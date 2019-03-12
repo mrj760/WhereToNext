@@ -1,0 +1,47 @@
+{
+  "College": [
+
+    {
+      "name":"UC Berkeley",
+      "annualEnrollment": 42082,
+      "tuition": 14068,
+      "rating" : 4.7,
+      "imageName": "ucb.png"
+    },
+    {
+      "name": "UC Irvine",
+      "annualEnrollment": 31551,
+      "tuition": 15026.47,
+      "rating": 4.3,
+      "imageName": "uci.png"
+    },
+    {
+      "name": "UC Los Angeles",
+      "annualEnrollment": 43301,
+      "tuition": 25308,
+      "rating": 4.5,
+      "imageName": "ucla.png"
+    },
+    {
+      "name": "UC San Diego",
+      "annualEnrollment": 33735,
+      "tuition": 20212,
+      "rating": 4.4,
+      "imageName": "ucsd.png"
+    },
+    {
+      "name": "CSU Fullerton",
+      "annualEnrollment": 38948,
+      "tuition": 6437,
+      "rating": 4.5,
+      "imageName": "csuf.png"
+    },
+    {
+      "name": "CSU Long Beach",
+      "annualEnrollment": 37430,
+      "tuition": 6452,
+      "rating": 4.4,
+      "imageName": "csulb.png"
+    }
+  ]
+}
