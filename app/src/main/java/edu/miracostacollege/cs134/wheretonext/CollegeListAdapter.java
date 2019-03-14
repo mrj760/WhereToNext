@@ -2,11 +2,20 @@ package edu.miracostacollege.cs134.wheretonext;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
+import android.media.Rating;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -56,6 +65,28 @@ public class CollegeListAdapter extends ArrayAdapter<College> {
         View view = inflater.inflate(mResourceId, null);
 
         view.setTag(pos);
+
+        College college = mCollegesList.get(pos);
+
+        ImageView image = view.findViewById(R.id.collegeImage);
+        AssetManager am = mContext.getAssets();
+        InputStream is=null;
+        try {
+            is = am.open(college.getImageName());
+        } catch (IOException e) {
+            Log.e("College List Adapter", e.getMessage());
+        }
+        Drawable draw = Drawable.createFromStream(is, "collegeImage");
+
+        image.setImageDrawable(draw);
+
+        TextView tv = view.findViewById(R.id.collegeName);
+        tv.setText(college.getName());
+        RatingBar rb = view.findViewById(R.id.collegeRating);
+        rb.setRating((float)college.getRating());
+
+
+
 
         return view;
     }

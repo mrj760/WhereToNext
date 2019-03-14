@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText populationET;
     private EditText tuitionET;
     private RatingBar userRatingBar;
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,34 +60,53 @@ public class MainActivity extends AppCompatActivity {
         collegeListAdapter = new CollegeListAdapter(this, R.layout.college_list_item, collegesList);
         // DONE?:  Set the list view to use the list adapter
         collegesListView.setAdapter(collegeListAdapter);
+
+
+        collegesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                viewCollegeDetails(view, position);
+            }
+        });
     }
 
-    public void viewCollegeDetails(View v) {
+
+
+
+
+
+
+    public void viewCollegeDetails(View v, int position) {
 
         int pos = (int) v.getTag();
 
         // DONE: Implement the view college details using an Intent
         Intent i = new Intent(this, CollegeDetailsActivity.class);
 
-        College c = collegesList.get(pos);
+        College c = collegesList.get(position);
         i.putExtra("name", c.getName());
         i.putExtra("annualEnrollment", c.getPopulation());
         i.putExtra("tuition", c.getTuition());
         i.putExtra("rating", c.getRating());
         i.putExtra("imageName", c.getImageName());
+
+
+        startActivity(i);
     }
 
     public void addCollege(View view) {
 
-        // TODO: Implement the code for when the user clicks on the addCollegeButton
+        // done: Implement the code for when the user clicks on the addCollegeButton
 
         // get edittexts and create new object then add to collegesList
         String name = nameET.getText().toString();
         int population = Integer.parseInt(populationET.getText().toString());
         double tuition = Double.parseDouble(tuitionET.getText().toString());
         double rating = userRatingBar.getRating();
+        String imageName = "college.png";
 
         College c= new College(name, population, tuition, rating);
+        c.setImageName(imageName);
 
         collegesList.add(c);
 
